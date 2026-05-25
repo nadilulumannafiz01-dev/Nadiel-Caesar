@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>⚠️ Peringatan Keamanan Sistem ⚠️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none; /* memberi kesan sistem terkunci */
+        }
+
+        body {
+            background: #0a0f0a;
+            min-height: 100vh;
+            font-family: 'Courier New', 'Fira Code', monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            animation: flickerBg 0.15s infinite;
+        }
+
+        /* efek flicker latar seperti monitor rusak */
+        @keyframes flickerBg {
+            0% { background-color: #0a0f0a; }
+            95% { background-color: #0a0f0a; }
+            96% { background-color: #1c2a1c; }
+            97% { background-color: #0a0a0a; }
+            100% { background-color: #000000; }
+        }
+
+        /* kontainer utama dengan efek glitch border */
+        .virus-container {
+            width: 95%;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(2px);
+            border: 3px solid #b00030;
+            border-radius: 20px;
+            padding: 20px 25px 35px;
+            box-shadow: 0 0 20px rgba(220, 0, 0, 0.5), inset 0 0 15px rgba(255, 0, 0, 0.2);
+            animation: borderGlitch 0.3s infinite steps(1);
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes borderGlitch {
+            0% { border-color: #b00030; box-shadow: 0 0 18px red; }
+            50% { border-color: #ff3366; box-shadow: 0 0 30px #ff2255; }
+            100% { border-color: #8b0020; box-shadow: 0 0 10px #ff004c; }
+        }
+
+        .warning-icon {
+            text-align: center;
+            font-size: 65px;
+            filter: drop-shadow(0 0 5px red);
+            animation: pulseIcon 0.8s infinite alternate;
+        }
+
+        @keyframes pulseIcon {
+            from { transform: scale(1); text-shadow: 0 0 2px red; }
+            to { transform: scale(1.07); text-shadow: 0 0 20px #ff4444; }
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            color: #ff3333;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            word-break: break-word;
+            margin: 10px 0 5px;
+            animation: glitchText 1.2s infinite;
+        }
+
+        @keyframes glitchText {
+            0%, 100% { text-shadow: -2px 0 red, 2px 0 cyan; opacity: 1; }
+            25% { text-shadow: 2px 0 red, -2px 0 cyan; letter-spacing: 6px; }
+            50% { text-shadow: -4px 0 #ff00cc, 4px 0 #00ff99; transform: skew(0.5deg);}
+            75% { text-shadow: 3px 0 #ffaa00, -2px 0 #ff00aa; }
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #ffaa88;
+            background: #2a0f0f;
+            display: inline-block;
+            width: 100%;
+            padding: 6px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            border-left: 4px solid red;
+            border-right: 4px solid red;
+            animation: blinkBg 1s infinite;
+        }
+
+        @keyframes blinkBg {
+            0% { background: #3a1515; }
+            50% { background: #661111; }
+            100% { background: #3a1515; }
+        }
+
+        /* terminal log style */
+        .log-box {
+            background: #030303;
+            border: 1px solid #6d1a1a;
+            border-radius: 10px;
+            padding: 15px;
+            height: 200px;
+            overflow-y: auto;
+            font-size: 0.8rem;
+            font-family: monospace;
+            color: #0f0;
+            text-shadow: 0 0 2px #0f0;
+            margin-bottom: 25px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .log-line {
+            margin: 4px 0;
+            border-left: 2px solid #ff5555;
+            padding-left: 8px;
+            word-break: break-all;
+            animation: fadeInLine 0.2s ease;
+        }
+
+        @keyframes fadeInLine {
+            from { opacity: 0; transform: translateX(-10px);}
+            to { opacity: 1; transform: translateX(0);}
+        }
+
+        .error-line {
+            color: #ff8888;
+            text-shadow: 0 0 3px red;
+            font-weight: bold;
+        }
+
+        .warning-line {
+            color: #ffbb66;
+        }
+
+        .progress-area {
+            margin: 15px 0 20px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #dd8888;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        .progress-bar-bg {
+            background: #2a1a1a;
+            border-radius: 40px;
+            height: 20px;
+            overflow: hidden;
+            border: 1px solid #b33;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #cc2222, #ff5555, #aa1111);
+            border-radius: 40px;
+            transition: width 0.15s linear;
+            box-shadow: 0 0 5px orangered;
+        }
+
+        .button-panel {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 25px 0 15px;
+        }
+
+        .prank-btn {
+            background: black;
+            border: 2px solid #a12222;
+            color: #ff7777;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 60px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.1s linear;
+            box-shadow: 0 0 6px darkred;
+            letter-spacing: 1px;
+        }
+
+        .prank-btn:hover {
+            background: #3a0f0f;
+            transform: scale(0.98);
+            border-color: crimson;
+            color: white;
+            box-shadow: 0 0 15px red;
+        }
+
+        .prank-btn:active {
+            transform: scale(0.95);
+        }
+
+        .secret-note {
+            text-align: center;
+            font-size: 0.65rem;
+            color: #a55959;
+            margin-top: 20px;
+            border-top: 1px dashed #5a2a2a;
+            padding-top: 10px;
+        }
+
+        /* efek getar pada konten tertentu */
+        .shake-effect {
+            animation: shakeBox 0.2s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+
+        @keyframes shakeBox {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(4px, -2px); }
+            50% { transform: translate(-4px, 2px); }
+            75% { transform: translate(2px, -1px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* pseudo-elemen untuk efek matrix line */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0, 255, 0, 0.03) 0px, rgba(0, 255, 0, 0.05) 2px, transparent 3px, transparent 6px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* tombol hidden exit */
+        .hidden-exit {
+            position: fixed;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.6);
+            color: #777;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-family: monospace;
+            cursor: pointer;
+            z-index: 99;
+            backdrop-filter: blur(4px);
+            transition: 0.2s;
+            border: 1px solid #5a2a2a;
+        }
+        .hidden-exit:hover {
+            color: white;
+            background: #6a1a1a;
+            border-color: red;
+        }
+
+        /* scrollbar custom */
+        .log-box::-webkit-scrollbar {
+            width: 6px;
+        }
+        .log-box::-webkit-scrollbar-track {
+            background: #1f1a1a;
+        }
+        .log-box::-webkit-scrollbar-thumb {
+            background: #aa3333;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="virus-container" id="prankMain">
+    <div class="warning-icon">
+        ⚠️💀⚠️
+    </div>
+    <h1>KRITIKAL: VIRUS RAT_CRIMSON</h1>
+    <div class="subtitle">
+        » PERANGKAT TELAH DIMASUKI VIRUS «
+    </div>
+
+    <!-- Terminal log simulasi serangan -->
+    <div class="log-box" id="logArea">
+        <div class="log-line">[!] Sistem mendeteksi ancaman aktif...</div>
+        <div class="log-line error-line">[!] Varian: RansomEye.Crypt / Worm.AutoSpread</div>
+        <div class="log-line">[>] Menjalankan payload di memori...</div>
+    </div>
+
+    <!-- Progress bar palsu -->
+    <div class="progress-area">
+        <div class="progress-label">
+            <span>🔴 INFECTION PROGRESS</span>
+            <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <div class="button-panel">
+        <button class="prank-btn" id="btnClean">🧹 BERSIHKAN VIRUS</button>
+        <button class="prank-btn" id="btnIgnore">⛔ ABORT / IGNORE</button>
+        <button class="prank-btn" id="btnPanic">💀 EMERGENCY FIX</button>
+    </div>
+
+    <div class="secret-note">
+        ⚡ Sistem dalam bahaya! Jangan matikan komputer ⚡
+    </div>
+</div>
+
+<div class="hidden-exit" id="secretExitButton">
+    [ force quit ]
+</div>
+
+<script>
+    (function() {
+        // --------------------------- PRANK SIMULATION ---------------------------
+        // Semua konten bersifat hiburan / lelucon. Tidak ada bahaya nyata.
+        // Menampilkan efek dramatis tapi dengan cara aman.
+        
+        const logContainer = document.getElementById('logArea');
+        const progressFill = document.getElementById('progressFill');
+        const progressPercentSpan = document.getElementById('progressPercent');
+        const btnClean = document.getElementById('btnClean');
+        const btnIgnore = document.getElementById('btnIgnore');
+        const btnPanic = document.getElementById('btnPanic');
+        const secretExit = document.getElementById('secretExitButton');
+        const container = document.getElementById('prankMain');
+        
+        // state prank
+        let infectionProgress = 0;
+        let logInterval = null;
+        let isPrankActive = true;
+        let fakeActionRunning = false;
+        
+        // daftar pesan palsu untuk terminal (efek menakutkan)
+        const scaryLogs = [
+            "[>] Menginfeksi file sistem: \\Windows\\System32\\kernel32.dll",
+            "[!] Enkripsi data pengguna dimulai... [RANSOMWARE]",
+            "[#] Membajak sesi administrator.... akses token dicuri",
+            "[*] Menyebar ke drive D: , E: , dan folder Documents",
+            "[WARN] Firewall dinonaktifkan!",
+            "[V] Membaca kredensial browser... data ditemukan",
+            "[X] Menghubungkan ke server C2: 185.xxx.xx.xx",
+            "[+] Membuat backdoor permanen di registery",
+            "[CRIT] Semua file pribadi terenkripsi !",
+            "[ALERT] Webcam diaktifkan secara diam-diam (prank aja ya)",
+            "[>>] Mematikan Windows Defender / AV realtime",
+            "[!!!] Virus menyusup ke boot sector ~ sistem tidak stabil",
+            "[R] Ransom note dibuat : README_VIRUS.txt",
+            "[ D ] Mengirim data ke server anonim..."
+        ];
+        
+        // membuat log baru dengan efek dramatis
+        function addLogMessage(message, isError = false, isWarning = false) {
+            if (!logContainer) return;
+            const logDiv = document.createElement('div');
+            logDiv.className = 'log-line';
+            if (isError) logDiv.classList.add('error-line');
+            if (isWarning) logDiv.classList.add('warning-line');
+            logDiv.innerHTML = `> ${message}`;
+            logContainer.appendChild(logDiv);
+            logDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            // batasi jumlah baris (keep terbaru)
+            while (logContainer.children.length > 30) {
+                logContainer.removeChild(logContainer.firstChild);
+            }
+        }
+        
+        // update progress bar palsu & persen
+        function updateProgress(value) {
+            let newVal = Math.min(100, Math.max(0, value));
+            infectionProgress = newVal;
+            progressFill.style.width = newVal + '%';
+            progressPercentSpan.innerText = newVal + '%';
+            if (newVal === 100) {
+                addLogMessage("[ FATAL ] Infeksi mencapai 100%! Semua data terkunci.", true);
+                addLogMessage("[*] Membuka koneksi ke server penyerang...", true);
+                // efek dramatis
+                triggerShake();
+            }
+        }
+        
+        // efek getar pada container
+        function triggerShake() {
+            container.classList.add('shake-effect');
+            setTimeout(() => {
+                container.classList.remove('shake-effect');
+            }, 300);
+        }
+        
+        // secara acak menambah progress (simulasi virus menyebar sendiri)
+        function autoInfect() {
+            if (!isPrankActive) return;
+            if (infectionProgress < 100) {
+                let increment = Math.floor(Math.random() * 8) + 2;
+                let newProgress = Math.min(infectionProgress + increment, 100);
+                updateProgress(newProgress);
+                if (newProgress === 100) {
+                    // saat full, muncul pesan kritis
+                    addLogMessage("⚠️ RANSOMWARE AKTIF! Semua file .docx, .pdf, .jpg terenkripsi!", true);
+                    addLogMessage("Klik tombol 'BERSIHKAN VIRUS' dengan resiko tinggi!", true);
+                } else {
+                    // kadang tambah log random
+                    if (Math.random() < 0.4) {
+                        let randomMsg = scaryLogs[Math.floor(Math.random() * scaryLogs.length)];
+                        let isErr = randomMsg.includes('[!]') || randomMsg.includes('[CRIT]') || randomMsg.includes('[X]');
+                        addLogMessage(randomMsg, isErr, randomMsg.includes('[WARN]'));
+                    }
+                }
+            } else {
+                // jika sudah 100%, jangan tambah lagi
+                if (logInterval) clearInterval(logInterval);
+            }
+        }
+        
+        // Memulai proses infeksi palsu periodik
+        function startInfectionSpreader() {
+            if (logInterval) clearInterval(logInterval);
+            logInterval = setInterval(() => {
+                if (isPrankActive && infectionProgress < 100) {
+                    autoInfect();
+                } else if (infectionProgress >= 100) {
+                    // jika sudah 100, kurangi frekuensi atau stop
+                    if (logInterval) clearInterval(logInterval);
+                }
+            }, 2100);
+        }
+        
+        // ============== Tombol prank interaktif ==============
+        // Tombol Bersihkan Virus : akan menjalankan proses gagal yang dramatis
+        function fakeCleanVirus() {
+            if (fakeActionRunning) {
+                addLogMessage("[!] Proses pembersihan sedang berjalan... sabar!", false, true);
+                triggerShake();
+                return;
+            }
+            if (!isPrankActive) return;
+            fakeActionRunning = true;
+            addLogMessage(">>> Memulai pemindaian antivirus darurat...", false);
+            addLogMessage("[*] Mencoba menghentikan proses virus...", false);
+            
+            let cleanAttempt = 0;
+            let maxAttempt = 3;
+            let intervalClean = setInterval(() => {
+                if (!isPrankActive) {
+                    clearInterval(intervalClean);
+                    fakeActionRunning = false;
+                    return;
+                }
+                cleanAttempt++;
+                if (cleanAttempt === 1) {
+                    addLogMessage("[SCAN] Threat detected: RAT_Crimson.exe | PID: 4A3F", true);
+                    addLogMessage("[SCAN] Mencoba quarantine... GAGAL karena akses ditolak.", true);
+                    triggerShake();
+                } else if (cleanAttempt === 2) {
+                    addLogMessage("[!] Sistem kekurangan resources. Virus mereplikasi diri!", true);
+                    if (infectionProgress < 85) updateProgress(infectionProgress + 11);
+                    else updateProgress(Math.min(infectionProgress + 3, 100));
+                } else if (cleanAttempt === 3) {
+                    addLogMessage("[FAILED] Pembersihan gagal! Virus malah semakin aktif.", true);
+                    addLogMessage("[⚠️] Mematikan layanan keamanan residual...", true);
+                    if (infectionProgress < 98) updateProgress(infectionProgress + 7);
+                    else updateProgress(100);
+                    addLogMessage("⚠️ PERINGATAN: Semua data di drive C: terancam. Tekan EMERGENCY jika berani!", true);
+                    fakeActionRunning = false;
+                    clearInterval(intervalClean);
+                }
+            }, 1000);
+            
+            // timeout fallback
+            setTimeout(() => {
+                if (fakeActionRunning) {
+                    clearInterval(intervalClean);
+                    fakeActionRunning = false;
+                    addLogMessage("[ERROR] Pembersihan timeout, virus menginfeksi sistem lebih dalam", true);
+                }
+            }, 4500);
+        }
+        
+        // tombol IGNORE : efek panik dan menambah progress dramatis
+        function fakeIgnore() {
+            if (!isPrankActive) return;
+            addLogMessage("[ABORT] Anda mencoba mengabaikan ancaman !", true);
+            addLogMessage("[!] Virus mendeteksi upaya penghindaran... melancarkan serangan balik", true);
+            triggerShake();
+            let added = Math.floor(Math.random() * 15) + 5;
+            updateProgress(Math.min(infectionProgress + added, 100));
+            if (infectionProgress >= 90) {
+                addLogMessage("KRITIS: Sistem mengunci akses ke file pribadi! Segera lakukan tindakan!", true);
+            }
+            // kadang efek log tambahan
+            setTimeout(() => {
+                if (isPrankActive) addLogMessage("⚠️ Virus memblokir tombol Abort! JANGAN IGNORE!", true);
+            }, 600);
+        }
+        
+        // Tombol emergency fix : drama gagal total lalu akhirnya muncul pesan just kidding
+        let emergencyUsed = false;
+        function fakeEmergency() {
+            if (!isPrankActive) return;
+            if (emergencyUsed) {
+                addLogMessage("[INFO] Emergency fix sudah pernah dijalankan. Coba refresh halaman jika ingin keluar.", false, true);
+                return;
+            }
+            if (infectionProgress < 40) {
+                addLogMessage("[EMERGENCY] Respon darurat gagal, tingkat infeksi terlalu rendah??", false);
+                addLogMessage("Virus malah menginfeksi lebih cepat...", true);
+                updateProgress(infectionProgress + 20);
+                return;
+            }
+            emergencyUsed = true;
+            addLogMessage("🚨 EMERGENCY FIX TRIGGERED! Mencoba decrypt data...", false);
+            addLogMessage("[...] Menggunakan kunci darurat ...  ...", false);
+            let count = 0;
+            let emergencyInterval = setInterval(() => {
+                count++;
+                if (count === 1) {
+                    addLogMessage("Mendeteksi kegagalan, kunci darurat tidak valid.", true);
+                    addLogMessage("Melakukan rollback konfigurasi... tapi terjadi korupsi memori", true);
+                } else if (count === 2) {
+                    addLogMessage("[FAILSAFE] Sistem kehilangan stabilitas. Menampilkan pesan terakhir...", true);
+                } else if (count === 3) {
+                    addLogMessage("================================================", false);
+                    addLogMessage("😜 JUST KIDDING! 😜", false);
+                    addLogMessage("TIDAK ADA VIRUS SAMA SEKALI. HANYA LEKON PRANK.", false);
+                    addLogMessage("Klik tombol [force quit] di pojok kanan atau refresh halaman.", false);
+                    addLogMessage("Maaf mengagetkan, ingat selalu backup data asli ya 😉", false);
+                    addLogMessage("================================================", false);
+                    // hentikan progress & nonaktifkan interaksi lanjutan yg merusak
+                    isPrankActive = false;
+                    if (logInterval) clearInterval(logInterval);
+                    // ubah tampilan tombol jadi tidak aktif/disable
+                    btnClean.disabled = true;
+                    btnIgnore.disabled = true;
+                    btnPanic.disabled = true;
+                    btnClean.style.opacity = "0.5";
+                    btnIgnore.style.opacity = "0.5";
+                    btnPanic.style.opacity = "0.5";
+                    btnClean.style.cursor = "not-allowed";
+                    btnIgnore.style.cursor = "not-allowed";
+                    btnPanic.style.cursor = "not-allowed";
+                    clearInterval(emergencyInterval);
+                    fakeActionRunning = false;
+                }
+            }, 1200);
+        }
+        
+        // Tombol force quit (hidden) untuk menghentikan prank dan menampilkan pesan normal
+        function forceQuitPrank() {
+            if (logInterval) clearInterval(logInterval);
+            isPrankActive = false;
+            // bersihkan semua efek, tampilkan pesan keluar
+            addLogMessage("======================================", false);
+            addLogMessage("✅ PRANK DINONAKTIFKAN ✅", false);
+            addLogMessage("Perangkat Anda aman, tidak ada ancaman sebenarnya.", false);
+            addLogMessage("Klik refresh halaman jika ingin mengulang prank.", false);
+            addLogMessage("Terima kasih sudah tersenyum ~ from programmer iseng", false);
+            addLogMessage("======================================", false);
+            // nonaktifkan tombol agar tidak bisa lanjut
+            btnClean.disabled = true;
+            btnIgnore.disabled = true;
+            btnPanic.disabled = true;
+            btnClean.style.opacity = "0.5";
+            btnIgnore.style.opacity = "0.5";
+            btnPanic.style.opacity = "0.5";
+            // Hapus progress bar effect lanjutan
+            progressFill.style.background = "#555";
+            if(fakeActionRunning) fakeActionRunning = false;
+        }
+        
+        // tambahan efek berbahaya palsu: jika progress mencapai 100, tambahan otomatis panggil panic
+        function watchHundredPercent() {
+            let checkInterval = setInterval(() => {
+                if (infectionProgress >= 100 && isPrankActive && !emergencyUsed) {
+                    // panggil otomatis pesan serangan full
+                    addLogMessage("[💀💀💀] INFECTION COMPLETE! VIRUS MENGAMBIL ALIH!", true);
+                    addLogMessage("TEKAN EMERGENCY FIX untuk menyelamatkan data (meskipun palsu)", true);
+                    clearInterval(checkInterval);
+                }
+                if (!isPrankActive) clearInterval(checkInterval);
+            }, 800);
+        }
+        
+        // Kustom inisialisasi : tambah beberapa log awal dan mulai progress dari 12%
+        function initPrank() {
+            updateProgress(12);
+            startInfectionSpreader();
+            watchHundredPercent();
+            // tambah log awal mencekam
+            setTimeout(() => {
+                if(isPrankActive) addLogMessage("[!] VIRUS CRIMSON RAT berhasil menyusup melalui dokumen mencurigakan", true);
+            }, 500);
+            setTimeout(() => {
+                if(isPrankActive) addLogMessage("[*] Memodifikasi System Registry -> HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            }, 1800);
+            setTimeout(() => {
+                if(isPrankActive) addLogMessage("[Warning] Disable Task Manager & Registry Editor (simulasi)", false, true);
+            }, 3200);
+        }
+        
+        // event listener tombol
+        btnClean.addEventListener('click', () => {
+            if (isPrankActive && !btnClean.disabled) fakeCleanVirus();
+            else if(!isPrankActive) addLogMessage("[PRANK SUDAH BERAKHIR] Refresh halaman jika ingin bermain lagi", false);
+        });
+        btnIgnore.addEventListener('click', () => {
+            if (isPrankActive && !btnIgnore.disabled) fakeIgnore();
+        });
+        btnPanic.addEventListener('click', () => {
+            if (isPrankActive && !btnPanic.disabled) fakeEmergency();
+        });
+        secretExit.addEventListener('click', () => {
+            forceQuitPrank();
+        });
+        
+        // Efek tambahan: setiap kali tombol diklik, trigger shake kecil untuk dramatis
+        const allBtns = [btnClean, btnIgnore, btnPanic];
+        allBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if(isPrankActive) {
+                    // efek kecil getar
+                    btn.style.transform = "scale(0.96)";
+                    setTimeout(() => { btn.style.transform = ""; }, 120);
+                }
+            });
+        });
+        
+        // Jalankan prank
+        initPrank();
+        
+        // Mencegah user klik kanan konteks (biasa untuk prank)
+        document.addEventListener('contextmenu', function(e) {
+            if(isPrankActive) {
+                e.preventDefault();
+                addLogMessage("[!] Akses konteks diblokir oleh virus!", true);
+                return false;
+            }
+        });
+        
+        // Optional: menekan tombol F12 agak di ganggu (hanya efek)
+        window.addEventListener('keydown', function(e) {
+            if(isPrankActive && (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I'))) {
+                e.preventDefault();
+                addLogMessage("[Security] DevTools diblokir sementara oleh ancaman aktif (hanya efek visual)", true);
+                triggerShake();
+            }
+            // jika tekan Escape berulang bisa keluar dengan force quit (opsi alternatif)
+            if(e.key === 'Escape' && isPrankActive) {
+                addLogMessage("Tekan tombol 'force quit' di pojok kanan untuk mengakhiri prank dengan aman.", false);
+            }
+        });
+    })();
+</script>
+</body>
+</html>
